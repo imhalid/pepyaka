@@ -1,4 +1,4 @@
-import { WebGLRenderer, Scene, AxesHelper, SRGBColorSpace, PCFShadowMap, ACESFilmicToneMapping, Color } from 'three'
+import { WebGLRenderer, Scene, Color } from 'three'
 import { gui } from './gui'
 
 export const sizes = {
@@ -8,7 +8,7 @@ export const sizes = {
 
 // Scene
 export const scene = new Scene()
-scene.background = new Color('#333')
+scene.background = new Color('#000')
 
 const canvas: HTMLElement = document.querySelector('#webgl') as HTMLElement
 
@@ -17,21 +17,6 @@ export const renderer = new WebGLRenderer({
   canvas,
   antialias: true,
   alpha: true,
-})
-
-// More realistic shadows
-renderer.shadowMap.enabled = true
-renderer.shadowMap.type = PCFShadowMap
-renderer.outputColorSpace = SRGBColorSpace
-renderer.toneMapping = ACESFilmicToneMapping
-renderer.toneMappingExposure = 1
-
-// Axes Helper
-const axesHelper = new AxesHelper()
-scene.add(axesHelper)
-
-gui.addBinding(axesHelper, 'visible', {
-  label: 'AxesHelper',
 })
 
 function updateRenderer() {
